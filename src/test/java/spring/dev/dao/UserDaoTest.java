@@ -42,7 +42,7 @@ public class UserDaoTest {
     @Autowired DataSource dataSource;
 
     private User user2;
-    private User user1;
+    private User user1;  
     private User user3;
 
     @Before

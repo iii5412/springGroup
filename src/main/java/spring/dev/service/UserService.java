@@ -40,7 +40,6 @@ public class UserService {
         for(User user : users){
             if(canUpgradeLevel(user)){
                 upgradeLevel(user);
-                //테스트
             }
         }
     }

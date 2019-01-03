@@ -1,0 +1,16 @@
+spring\dev\dao\SimpleConnectionMaker.class
+spring\dev\singlton\SingltonMain.class
+spring\dev\dao\JdbcContext$1.class
+spring\dev\dao\DeleteAllStatement.class
+spring\dev\dao\JdbcContext.class
+spring\dev\dao\UserDao$1.class
+spring\dev\dao\UserDao.class
+spring\dev\domain\User.class
+spring\dev\dao\ConnectionMaker.class
+spring\dev\App.class
+spring\dev\singlton\SingltonExample.class
+spring\dev\calc\Calculator.class
+spring\dev\dao\StatementStrategy.class
+spring\dev\dao\DConnectionMaker.class
+spring\dev\dao\DaoFactory.class
+spring\dev\dao\AddStatement.class
