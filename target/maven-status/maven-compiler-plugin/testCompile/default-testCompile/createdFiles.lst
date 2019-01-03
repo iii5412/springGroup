@@ -1,3 +1,6 @@
-spring\dev\calc\CalcSumTest.class
 spring\dev\AppTest.class
+spring\dev\calcTest\calcTest.class
+spring\dev\service\UserServiceTest.class
+spring\dev\calc\CalcSumTest.class
+spring\dev\domain\UserTest.class
 spring\dev\dao\UserDaoTest.class

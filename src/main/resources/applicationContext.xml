@@ -10,6 +10,11 @@
 
     <bean id="userService" class="spring.dev.service.UserService">
         <property name="userDao" ref="userDao" />
+        <property name="userLevelUpgradePolicy" ref="userLevelUpgradePolicy"/>
+    </bean>
+
+    <bean id="userLevelUpgradePolicy" class="spring.dev.service.EventUserLevelUpgrade">
+
     </bean>
 
     <!--

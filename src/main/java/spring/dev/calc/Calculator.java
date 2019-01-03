@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import spring.dev.calc.BufferdReaderCallback;
 import spring.dev.calcTest.LineCallBack;
 
 public class Calculator {
