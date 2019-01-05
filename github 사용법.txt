@@ -1,0 +1,31 @@
+github 설정
+intelliJ 와 연동이 가능하다고는 하나 버전별 버그가 있어 수정된 내용을 intelliJ에서 인식을 못해줘 수동 commit은 불가피
+
+git 가입 redeme 체크(왜인지는 모름..)
+
+git을 설치 후 project 디렉토리(git home디렉토리)에서 우클릭 후 bash 호출
+
+git init 으로 홈지정
+
+파일 수정 후 git status로 변경된 파일 확인
+
+git add * 로 변경된 파일 index에 추가
+
+git commit -m "주석" 으로 head에 반영
+
+git push origin master 로 push(원격저장소에 반영)
+또는 
+다른 원격저장소에 붙어야 한다면
+git remote add origin https://github.com/iii5412/springGroup.git ->springGroup github에 레파지토리 이름
+
+위 실행시 fatal  : remote origin already exists가 발생하면
+git remote rm origin 으로 제거 후 
+다시 시도
+
+수정->index->head->push(원격저장소)
+
+
+
+
+https://rogerdudler.github.io/git-guide/index.ko.html
+

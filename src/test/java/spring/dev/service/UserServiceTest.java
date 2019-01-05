@@ -13,6 +13,7 @@ import spring.dev.domain.User;
 import java.util.Arrays;
 import java.util.List;
 
+import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -56,11 +57,11 @@ public class UserServiceTest {
 
         userService.upgradeLevels();
 
-        checkLevel(users.get(0), false);
-        checkLevel(users.get(1), true);
-        checkLevel(users.get(2), false);
-        checkLevel(users.get(3), true);
-        checkLevel(users.get(4), false);
+        checkLevelUpgraded(users.get(0), false);
+        checkLevelUpgraded(users.get(1), true);
+        checkLevelUpgraded(users.get(2), false);
+        checkLevelUpgraded(users.get(3), true);
+        checkLevelUpgraded(users.get(4), false);
 
     }
 
@@ -83,12 +84,48 @@ public class UserServiceTest {
 
     }
 
-    private void checkLevel(User user, boolean upgraded){
+    @Test
+    public void upgradeAllOrNothing() {
+        UserService testUserService = new TestUserService(users.get(3).getId());
+        testUserService.setUserDao(this.userDao);//userDao를 수동 DI 해준다.
+        userDao.deleteAll();
+        for(User user : users) userDao.add(user);
+
+        try {
+            testUserService.upgradeLevels();
+            fail("TestUserServiceException expected");
+        }catch(TestUserServiceException e){
+
+        }
+
+        checkLevelUpgraded(users.get(1), false);
+    }
+
+    private void checkLevelUpgraded(User user, boolean upgraded){
         User userUpdate = userDao.get(user.getId());
         if(upgraded){
             assertThat(userUpdate.getLevel(), is(user.getLevel().nextLevel()));
         }else{
             assertThat(userUpdate.getLevel(), is(user.getLevel()));
         }
+    }
+
+
+    static class TestUserService extends UserService {
+        private String id;
+
+        private TestUserService(String id){
+            this.id = id;
+        }
+
+        @Override
+        protected void upgradeLevel(User user){
+            if(user.getId().equals(this.id)) throw new TestUserServiceException();
+            super.upgradeLevel(user);
+        }
+    }
+
+    static class TestUserServiceException extends RuntimeException {
+
     }
 }
