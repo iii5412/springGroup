@@ -10,6 +10,8 @@ import spring.dev.dao.UserDao;
 import spring.dev.domain.Level;
 import spring.dev.domain.User;
 
+import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +28,9 @@ import static spring.dev.service.UserService.MIN_RECOMEND_FOR_GOLD;
 public class UserServiceTest {
     @Autowired
     UserService userService;
+    @Autowired
+    DataSource dataSource;
+
     UserDao userDao;
 
     List<User> users;
@@ -50,7 +55,7 @@ public class UserServiceTest {
 
 
     @Test
-    public void upgradeLevels(){
+    public void upgradeLevels() throws SQLException{
         userDao.deleteAll();
 
         for(User user:users) userDao.add(user);
@@ -85,9 +90,11 @@ public class UserServiceTest {
     }
 
     @Test
-    public void upgradeAllOrNothing() {
+    public void upgradeAllOrNothing() throws SQLException{
         UserService testUserService = new TestUserService(users.get(3).getId());
         testUserService.setUserDao(this.userDao);//userDao를 수동 DI 해준다.
+        testUserService.setDataSource(this.dataSource);
+
         userDao.deleteAll();
         for(User user : users) userDao.add(user);
 
