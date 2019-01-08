@@ -9,8 +9,11 @@ import static spring.dev.service.UserService.MIN_LOGCOUNT_FOR_SILVER;
 import static spring.dev.service.UserService.MIN_RECOMEND_FOR_GOLD;
 
 public class EventUserLevelUpgrade implements UserLevelUpgradePolicy{
-    @Autowired
-    UserDao userDao;
+    private UserDao userDao;
+    @Override
+    public void setUserDao(UserDao userDao){
+        this.userDao = userDao;
+    }
     @Override
     public boolean canUpgradeLevel(User user){
         Level currentLevel = user.getLevel();

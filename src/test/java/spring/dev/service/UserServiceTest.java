@@ -6,10 +6,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.PlatformTransactionManager;
 import spring.dev.dao.UserDao;
 import spring.dev.domain.Level;
 import spring.dev.domain.User;
 
+import javax.jws.Oneway;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -29,7 +31,7 @@ public class UserServiceTest {
     @Autowired
     UserService userService;
     @Autowired
-    DataSource dataSource;
+    PlatformTransactionManager transactionManager;
 
     UserDao userDao;
 
@@ -93,7 +95,7 @@ public class UserServiceTest {
     public void upgradeAllOrNothing() throws SQLException{
         UserService testUserService = new TestUserService(users.get(3).getId());
         testUserService.setUserDao(this.userDao);//userDao를 수동 DI 해준다.
-        testUserService.setDataSource(this.dataSource);
+        testUserService.setTransactionManager(this.transactionManager);
 
         userDao.deleteAll();
         for(User user : users) userDao.add(user);
