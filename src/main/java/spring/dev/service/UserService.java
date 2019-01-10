@@ -1,5 +1,6 @@
 package spring.dev.service;
 
+import org.h2.engine.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DataSourceUtils;
@@ -12,10 +13,17 @@ import spring.dev.dao.UserDao;
 import spring.dev.domain.Level;
 import spring.dev.domain.User;
 
+
 import javax.sql.DataSource;
+import java.io.UnsupportedEncodingException;
+import java.security.UnrecoverableEntryException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
+
+
+import static org.h2.engine.Session.*;
 
 public class UserService {
     UserDao userDao;
@@ -82,6 +90,7 @@ public class UserService {
     protected void upgradeLevel(User user){
         user.upgradeLevel();
         userDao.update(user);
+        sendUpgradeEMail(user);
     }
 
 
@@ -90,4 +99,8 @@ public class UserService {
         userDao.add(user);
     }
 
+
+    private void sendUpgradeEMail(User user) {
+
+    }
 }

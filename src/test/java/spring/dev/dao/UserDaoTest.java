@@ -54,9 +54,9 @@ public class UserDaoTest {
 
         //DataSource dataSource = new SingleConnectionDataSource("jdbc:h2:tcp://localhost/~/test", "sa", "test", true);
         //dao.setDataSource(dataSource);
-        this.user1 = new User("fapchino1", "실버", "springno1", Level.SILVER, 55, 10);
-        this.user2 = new User("fapchino2", "베이직", "springno2", Level.BASIC, 1, 0);
-        this.user3 = new User("fapchino3", "골드", "springno3", Level.GOLD, 100, 40);
+        this.user1 = new User("fapchino1", "실버", "springno1", Level.SILVER, 55, 10, "a@email.com");
+        this.user2 = new User("fapchino2", "베이직", "springno2", Level.BASIC, 1, 0,"b@email.com");
+        this.user3 = new User("fapchino3", "골드", "springno3", Level.GOLD, 100, 40,"c@email.com");
     }
 
 /*    @Test
